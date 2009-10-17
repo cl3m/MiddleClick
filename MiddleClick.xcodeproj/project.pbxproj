@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		75032EF60FF697A4004CECD2 /* mouse.icns in Resources */ = {isa = PBXBuildFile; fileRef = 75032EF50FF697A4004CECD2 /* mouse.icns */; };
+		7519A949108A763300466740 /* WakeObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = 7519A948108A763300466740 /* WakeObserver.m */; };
 		7569F71E1007F64500D9CE54 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7569F71D1007F64500D9CE54 /* IOKit.framework */; };
 		758786BA103357F6004E024C /* relaunch in Resources */ = {isa = PBXBuildFile; fileRef = 758786B9103357F6004E024C /* relaunch */; };
 		75A6B6600FEE3BE90071FAC0 /* TrayMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 75A6B65F0FEE3BE90071FAC0 /* TrayMenu.m */; };
@@ -26,6 +27,8 @@
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		32CA4F630368D1EE00C91783 /* MiddleClick_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MiddleClick_Prefix.pch; sourceTree = "<group>"; };
 		75032EF50FF697A4004CECD2 /* mouse.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = mouse.icns; sourceTree = "<group>"; };
+		7519A947108A763300466740 /* WakeObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WakeObserver.h; sourceTree = "<group>"; };
+		7519A948108A763300466740 /* WakeObserver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WakeObserver.m; sourceTree = "<group>"; };
 		7569F71D1007F64500D9CE54 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
 		758786B9103357F6004E024C /* relaunch */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = relaunch; sourceTree = "<group>"; };
 		75A6B65E0FEE3BE90071FAC0 /* TrayMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrayMenu.h; sourceTree = "<group>"; };
@@ -57,6 +60,8 @@
 			children = (
 				75A6B65E0FEE3BE90071FAC0 /* TrayMenu.h */,
 				75A6B65F0FEE3BE90071FAC0 /* TrayMenu.m */,
+				7519A947108A763300466740 /* WakeObserver.h */,
+				7519A948108A763300466740 /* WakeObserver.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -189,6 +194,7 @@
 			files = (
 				8D11072D0486CEB800E47090 /* main.m in Sources */,
 				75A6B6600FEE3BE90071FAC0 /* TrayMenu.m in Sources */,
+				7519A949108A763300466740 /* WakeObserver.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

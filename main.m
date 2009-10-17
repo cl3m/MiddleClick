@@ -14,6 +14,7 @@
 #import <ApplicationServices/ApplicationServices.h>
 #include <IOKit/pwr_mgt/IOPMLib.h>
 #include <IOKit/IOMessage.h>
+#import "WakeObserver.h"
 
 typedef struct { float x,y; } mtPoint;
 typedef struct { mtPoint pos,vel; } mtReadout;
@@ -117,23 +118,6 @@ int callback(int device, Finger *data, int nFingers, double timestamp, int frame
 	return 0;
 }
 
-
-void SystemSleepCallBack(void *refcon, io_service_t service, natural_t
-						 messageType, void *messageArgument) {
-	// restart middleclick after sleep because the hack to listen to raw finger doesn't work otherwise 
-    // reregister when back from sleep
-	if (messageType == kIOMessageSystemHasPoweredOn) {
-		NSString *relaunch = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"relaunch"];
-		int procid = [[NSProcessInfo processInfo] processIdentifier];
-		[NSTask launchedTaskWithLaunchPath:relaunch arguments:[NSArray arrayWithObjects:[[NSBundle mainBundle] bundlePath], [NSString stringWithFormat:@"%d",procid], nil]];
-		[NSApp terminate:NULL];
-	}
-}
-
-
-
-
-
 int main(int argc, char *argv[]) {
     NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];	
     [NSApplication sharedApplication];
@@ -145,15 +129,10 @@ int main(int argc, char *argv[]) {
 	MTDeviceStart(dev);
 	
 	//register a callback to know when osx come back from sleep
-	io_connect_t rootPowerService;
-	io_object_t notifier;
-	IONotificationPortRef notificationPort;
-	rootPowerService = IORegisterForSystemPower(NULL, &notificationPort,
-												SystemSleepCallBack, &notifier);
-	CFRunLoopAddSource(CFRunLoopGetCurrent(),
-					   IONotificationPortGetRunLoopSource(notificationPort),
-					   kCFRunLoopCommonModes);
-	
+	WakeObserver *wo = [[WakeObserver alloc] init];
+	[[[NSWorkspace sharedWorkspace] notificationCenter] addObserver: wo 
+														   selector: @selector(receiveWakeNote:) name: NSWorkspaceDidWakeNotification object: NULL];
+		
 	
 	//add traymenu
     TrayMenu *menu = [[TrayMenu alloc] init];
