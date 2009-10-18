@@ -10,10 +10,7 @@
 #include <math.h>
 #include <unistd.h>
 #include <CoreFoundation/CoreFoundation.h>
-#import <Foundation/Foundation.h>
-#import <ApplicationServices/ApplicationServices.h>
-#include <IOKit/pwr_mgt/IOPMLib.h>
-#include <IOKit/IOMessage.h>
+#import <Foundation/Foundation.h> 
 #import "WakeObserver.h"
 
 typedef struct { float x,y; } mtPoint;
@@ -44,7 +41,6 @@ NSDate *touchStartTime;
 float middleclickX, middleclickY;
 float middleclickX2, middleclickY2;
 MTDeviceRef dev;
-NSString *executablePath;
 
 int callback(int device, Finger *data, int nFingers, double timestamp, int frame) {
 	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];	
@@ -121,7 +117,7 @@ int callback(int device, Finger *data, int nFingers, double timestamp, int frame
 int main(int argc, char *argv[]) {
     NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];	
     [NSApplication sharedApplication];
-	executablePath = [NSString stringWithUTF8String:argv[0]];
+	
 	
 	//register a callback to get raw touch data
 	dev = MTDeviceCreateDefault();
@@ -130,9 +126,8 @@ int main(int argc, char *argv[]) {
 	
 	//register a callback to know when osx come back from sleep
 	WakeObserver *wo = [[WakeObserver alloc] init];
-	[[[NSWorkspace sharedWorkspace] notificationCenter] addObserver: wo 
-														   selector: @selector(receiveWakeNote:) name: NSWorkspaceDidWakeNotification object: NULL];
-		
+	[[[NSWorkspace sharedWorkspace] notificationCenter] addObserver: wo selector: @selector(receiveWakeNote:) name: NSWorkspaceDidWakeNotification object: NULL];
+	
 	
 	//add traymenu
     TrayMenu *menu = [[TrayMenu alloc] init];
