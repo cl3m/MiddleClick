@@ -35,6 +35,7 @@ typedef int (*MTContactCallbackFunction)(int,Finger*,int,double,int);
 MTDeviceRef MTDeviceCreateDefault();
 void MTRegisterContactFrameCallback(MTDeviceRef, MTContactCallbackFunction);
 void MTDeviceStart(MTDeviceRef);
+CFMutableArrayRef MTDeviceCreateList(void); //returns a CFMutableArrayRef array of all multitouch devices
 
 BOOL maybeMiddleClick;
 NSDate *touchStartTime;
@@ -119,10 +120,17 @@ int main(int argc, char *argv[]) {
     [NSApplication sharedApplication];
 	
 	
-	//register a callback to get raw touch data
-	dev = MTDeviceCreateDefault();
-	MTRegisterContactFrameCallback(dev, callback);
-	MTDeviceStart(dev);
+	//Get list of all multi touch devices
+	NSMutableArray* deviceList = (NSMutableArray*)MTDeviceCreateList(); //grab our device list
+	
+	
+	//Iterate and register callbacks for multitouch devices.
+	for(int i = 0; i<[deviceList count]; i++) //iterate available devices
+	{
+		MTRegisterContactFrameCallback((MTDeviceRef)[deviceList objectAtIndex:i], callback); //assign callback for device
+		MTDeviceStart((MTDeviceRef)[deviceList objectAtIndex:i]); //start sending events
+	}
+	
 	
 	//register a callback to know when osx come back from sleep
 	WakeObserver *wo = [[WakeObserver alloc] init];
