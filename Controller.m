@@ -58,9 +58,9 @@
 	return needToClick;
 }
 
-- (void)toggleMode
+- (void)setMode:(BOOL)click
 {
-	needToClick = !needToClick;
+	needToClick = click;
 }
 
 int callback(int device, Finger *data, int nFingers, double timestamp, int frame) {

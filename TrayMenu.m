@@ -23,9 +23,15 @@
 	//[url release];
 }
 
-- (void)toggleClick:(id)sender
+- (void)setClick:(id)sender
 {
-	[myController toggleMode];
+	[myController setMode:YES];
+	[self setChecks];
+}
+
+- (void)setTap:(id)sender
+{
+	[myController setMode:NO];
 	[self setChecks];
 }
 
@@ -61,10 +67,10 @@
 						keyEquivalent:@""];
 	[menuItem setTarget:self];
 	
-	clickItem = [menu addItemWithTitle:@"3 Finger Click" action:@selector(toggleClick:) keyEquivalent:@""];
+	clickItem = [menu addItemWithTitle:@"3 Finger Click" action:@selector(setClick:) keyEquivalent:@""];
 	[clickItem setTarget:self];
 	
-	tapItem = [menu addItemWithTitle:@"3 Finger Tap" action:@selector(toggleClick:) keyEquivalent:@""];
+	tapItem = [menu addItemWithTitle:@"3 Finger Tap" action:@selector(setTap:) keyEquivalent:@""];
 	[tapItem setTarget:self];
 	[self setChecks];
 	
