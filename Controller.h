@@ -49,5 +49,6 @@ BOOL pressed;
 int callback(int device, Finger *data, int nFingers, double timestamp, int frame);
 - (void) start;
 - (void) toggleMode;
+- (BOOL)getClickMode;
 
 @end

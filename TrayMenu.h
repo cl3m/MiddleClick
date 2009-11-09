@@ -12,9 +12,9 @@
 @private
 	NSStatusItem *_statusItem;
 	Controller *myController;
-	BOOL click;
 	NSMenuItem *tapItem;
 	NSMenuItem *clickItem;
 }
 - (id)initWithController:(Controller *)ctrl;
+- (void)setChecks;
 @end

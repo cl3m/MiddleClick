@@ -53,6 +53,11 @@
 	[pool release];
 }
 
+- (BOOL)getClickMode
+{
+	return needToClick;
+}
+
 - (void)toggleMode
 {
 	needToClick = !needToClick;

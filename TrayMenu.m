@@ -13,7 +13,6 @@
 {
 	[super init];
 	myController = ctrl;
-	click = YES;
 	return self;
 }
 	
@@ -26,8 +25,13 @@
 
 - (void)toggleClick:(id)sender
 {
-	click = !click;
-	if(click)
+	[myController toggleMode];
+	[self setChecks];
+}
+
+- (void)setChecks
+{
+	if([myController getClickMode])
 	{
 		[clickItem setState:NSOnState];
 		[tapItem setState:NSOffState];
@@ -36,8 +40,6 @@
 		[clickItem setState:NSOffState];
 		[tapItem setState:NSOnState];
 	}
-
-	[myController toggleMode];
 }
 
 - (void) openFinder:(id)sender {
@@ -60,12 +62,11 @@
 	[menuItem setTarget:self];
 	
 	clickItem = [menu addItemWithTitle:@"3 Finger Click" action:@selector(toggleClick:) keyEquivalent:@""];
-	[clickItem setState:NSOnState];
 	[clickItem setTarget:self];
 	
 	tapItem = [menu addItemWithTitle:@"3 Finger Tap" action:@selector(toggleClick:) keyEquivalent:@""];
-	[tapItem setState:NSOffState];
 	[tapItem setTarget:self];
+	[self setChecks];
 	
 	// Add Separator
 	[menu addItem:[NSMenuItem separatorItem]];
