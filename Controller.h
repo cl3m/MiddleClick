@@ -10,7 +10,7 @@
 
 
 @interface Controller : NSObject {
-	
+
 }
 
 typedef struct { float x,y; } mtPoint;
@@ -29,8 +29,22 @@ typedef struct {
 	float unk2;
 } Finger;
 
-BOOL needToClick;
+typedef int MTDeviceRef;
+typedef int (*MTContactCallbackFunction)(int,Finger*,int,double,int);
 
+MTDeviceRef MTDeviceCreateDefault();
+void MTRegisterContactFrameCallback(MTDeviceRef, MTContactCallbackFunction);
+void MTDeviceStart(MTDeviceRef);
+CFMutableArrayRef MTDeviceCreateList(void); //returns a CFMutableArrayRef array of all multitouch devices
+
+NSDate *touchStartTime;
+float middleclickX, middleclickY;
+float middleclickX2, middleclickY2;
+MTDeviceRef dev;
+
+BOOL needToClick;
+BOOL maybeMiddleClick;
+BOOL pressed;
 
 int callback(int device, Finger *data, int nFingers, double timestamp, int frame);
 - (void) start;

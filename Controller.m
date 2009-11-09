@@ -16,28 +16,13 @@
 #import "WakeObserver.h"
 
 
-typedef int MTDeviceRef;
-typedef int (*MTContactCallbackFunction)(int,Finger*,int,double,int);
-
-MTDeviceRef MTDeviceCreateDefault();
-void MTRegisterContactFrameCallback(MTDeviceRef, MTContactCallbackFunction);
-void MTDeviceStart(MTDeviceRef);
-CFMutableArrayRef MTDeviceCreateList(void); //returns a CFMutableArrayRef array of all multitouch devices
-
-BOOL maybeMiddleClick;
-NSDate *touchStartTime;
-float middleclickX, middleclickY;
-float middleclickX2, middleclickY2;
-MTDeviceRef dev;
-BOOL pressed = NO;
-
-
 
 
 @implementation Controller
 
 - (void) start
 {
+	pressed = NO;
 	needToClick = YES;
 	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];	
     [NSApplication sharedApplication];
@@ -71,7 +56,6 @@ BOOL pressed = NO;
 - (void)toggleMode
 {
 	needToClick = !needToClick;
-	NSLog(@"foo");
 }
 
 int callback(int device, Finger *data, int nFingers, double timestamp, int frame) {
