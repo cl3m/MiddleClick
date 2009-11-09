@@ -17,6 +17,7 @@
 		75A6B6AB0FEE96540071FAC0 /* mouse.png in Resources */ = {isa = PBXBuildFile; fileRef = 75A6B6AA0FEE96540071FAC0 /* mouse.png */; };
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
+		FAD94F9410A88A7800A520EC /* Controller.m in Sources */ = {isa = PBXBuildFile; fileRef = FAD94F9310A88A7800A520EC /* Controller.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,8 @@
 		75A6B6AA0FEE96540071FAC0 /* mouse.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mouse.png; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* MiddleClick.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MiddleClick.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		FAD94F9210A88A7800A520EC /* Controller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Controller.h; sourceTree = "<group>"; };
+		FAD94F9310A88A7800A520EC /* Controller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Controller.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +110,8 @@
 		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
+				FAD94F9210A88A7800A520EC /* Controller.h */,
+				FAD94F9310A88A7800A520EC /* Controller.m */,
 				32CA4F630368D1EE00C91783 /* MiddleClick_Prefix.pch */,
 				29B97316FDCFA39411CA2CEA /* main.m */,
 			);
@@ -195,6 +200,7 @@
 				8D11072D0486CEB800E47090 /* main.m in Sources */,
 				75A6B6600FEE3BE90071FAC0 /* TrayMenu.m in Sources */,
 				7519A949108A763300466740 /* WakeObserver.m in Sources */,
+				FAD94F9410A88A7800A520EC /* Controller.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
