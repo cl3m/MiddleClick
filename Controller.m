@@ -23,7 +23,7 @@
 - (void) start
 {
 	pressed = NO;
-	needToClick = YES;
+	needToClick = NO;
 	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];	
     [NSApplication sharedApplication];
 	
