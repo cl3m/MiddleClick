@@ -73,15 +73,27 @@ int callback(int device, Finger *data, int nFingers, double timestamp, int frame
 		{
 			if(!pressed)
 			{
-				CGPostKeyboardEvent( (CGCharCode)0, (CGKeyCode)55, true );
+				NSLog(@"Pressed");
+				#if __MAC_OS_X_VERSION_MIN_REQUIRED >= 1060
+				  CGEventCreateKeyboardEvent(NULL, (CGKeyCode)55, true);
+				#else
+				  CGPostKeyboardEvent( (CGCharCode)0, (CGKeyCode)55, true );
+				#endif
 				pressed = YES;
 			}
 			
 		}
-		else {
+		
+		if(nFingers == 0) {
 			if(pressed)
 			{
-				CGPostKeyboardEvent( (CGCharCode)0, (CGKeyCode)55, false );
+				NSLog(@"Released");
+				#if __MAC_OS_X_VERSION_MIN_REQUIRED >= 1060
+					CGEventCreateKeyboardEvent(NULL, (CGKeyCode)55, false);
+				#else
+					CGPostKeyboardEvent( (CGCharCode)0, (CGKeyCode)55, false );
+				#endif					
+				
 				pressed = NO;
 			}
 		}
@@ -108,8 +120,13 @@ int callback(int device, Finger *data, int nFingers, double timestamp, int frame
 					 */
 					
 					// Real middle click
-					CGPostMouseEvent( ourLoc, 1, 3, 0, 0, 1);
-					CGPostMouseEvent( ourLoc, 1, 3, 0, 0, 0);
+					#if __MAC_OS_X_VERSION_MIN_REQUIRED >= 1060
+						CGEventPost (kCGHIDEventTap, CGEventCreateMouseEvent (NULL,kCGEventOtherMouseDown,ourLoc,kCGMouseButtonCenter));
+						CGEventPost (kCGHIDEventTap, CGEventCreateMouseEvent (NULL,kCGEventOtherMouseUp,ourLoc,kCGMouseButtonCenter));
+					#else
+						CGPostMouseEvent( ourLoc, 1, 3, 0, 0, 1);
+						CGPostMouseEvent( ourLoc, 1, 3, 0, 0, 0);
+					#endif
 					
 				}
 			}
