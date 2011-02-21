@@ -103,7 +103,7 @@ int callback(int device, Finger *data, int nFingers, double timestamp, int frame
 		if (nFingers==0){
 			NSTimeInterval elapsedTime = -[touchStartTime timeIntervalSinceNow];  
 			touchStartTime = NULL;
-			if (elapsedTime < 0.5f && middleclickX+middleclickY) {
+			if (elapsedTime < 0.2f && middleclickX+middleclickY) {
 				float dx = (middleclickX-middleclickX2);
 				float dy = (middleclickY-middleclickY2);
 				float delta = (dx*dx)+(dy*dy); 
@@ -145,7 +145,7 @@ int callback(int device, Finger *data, int nFingers, double timestamp, int frame
 		} else {
 			if (maybeMiddleClick==YES){
 				NSTimeInterval elapsedTime = -[touchStartTime timeIntervalSinceNow];  
-				if (elapsedTime > 0.5f)
+				if (elapsedTime > 0.2f)
 					maybeMiddleClick = NO;
 			}
 		}
