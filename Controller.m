@@ -101,10 +101,13 @@ int callback(int device, Finger *data, int nFingers, double timestamp, int frame
 	else 
 	{
 		if (nFingers==0){
+			NSTimeInterval elapsedTime = -[touchStartTime timeIntervalSinceNow];  
 			touchStartTime = NULL;
-			if(middleclickX+middleclickY) {
-				float delta = ABS(middleclickX-middleclickX2)+ABS(middleclickY-middleclickY2); 
-				if (delta < 0.4f) {
+			if (elapsedTime < 0.2f && middleclickX+middleclickY) {
+				float dx = (middleclickX-middleclickX2);
+				float dy = (middleclickY-middleclickY2);
+				float delta = (dx*dx)+(dy*dy); 
+				if (delta < 1.0f) {
 					// Emulate a middle click
 					
 					// get the current pointer location
@@ -142,7 +145,7 @@ int callback(int device, Finger *data, int nFingers, double timestamp, int frame
 		} else {
 			if (maybeMiddleClick==YES){
 				NSTimeInterval elapsedTime = -[touchStartTime timeIntervalSinceNow];  
-				if (elapsedTime > 0.5f)
+				if (elapsedTime > 0.2f)
 					maybeMiddleClick = NO;
 			}
 		}
