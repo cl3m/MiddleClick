@@ -15,8 +15,46 @@
 #import <Foundation/Foundation.h> 
 #import "WakeObserver.h"
 
+/***************************************************************************
+ *
+ * Multitouch API
+ *
+ ***************************************************************************/
+
+typedef struct { float x,y; } mtPoint;
+typedef struct { mtPoint pos,vel; } mtReadout;
+
+typedef struct {
+    int frame;
+    double timestamp;
+    int identifier, state, foo3, foo4;
+    mtReadout normalized;
+    float size;
+    int zero1;
+    float angle, majorAxis, minorAxis; // ellipsoid
+    mtReadout mm;
+    int zero2[2];
+    float unk2;
+} Finger;
+
+typedef void *MTDeviceRef;
+typedef int (*MTContactCallbackFunction)(int,Finger*,int,double,int);
+
+MTDeviceRef MTDeviceCreateDefault();
+CFMutableArrayRef MTDeviceCreateList(void); 
+void MTRegisterContactFrameCallback(MTDeviceRef, MTContactCallbackFunction);
+void MTDeviceStart(MTDeviceRef, int); // thanks comex
+void MTDeviceStop(MTDeviceRef);
 
 
+NSDate *touchStartTime;
+float middleclickX, middleclickY;
+float middleclickX2, middleclickY2;
+MTDeviceRef dev;
+
+BOOL needToClick;
+BOOL maybeMiddleClick;
+BOOL pressed;
 
 @implementation Controller
 
@@ -35,10 +73,9 @@
 	//Iterate and register callbacks for multitouch devices.
 	for(int i = 0; i<[deviceList count]; i++) //iterate available devices
 	{
-		MTRegisterContactFrameCallback((MTDeviceRef)[deviceList objectAtIndex:i], callback); //assign callback for device
-		MTDeviceStart((MTDeviceRef)[deviceList objectAtIndex:i]); //start sending events
+        MTRegisterContactFrameCallback((MTDeviceRef)[deviceList objectAtIndex:i], callback); //assign callback for device
+        MTDeviceStart((MTDeviceRef)[deviceList objectAtIndex:i],0); //start sending events
 	}
-	
 	
 	//register a callback to know when osx come back from sleep
 	WakeObserver *wo = [[WakeObserver alloc] init];

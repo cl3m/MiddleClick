@@ -67,7 +67,7 @@
 						keyEquivalent:@""];
 	[menuItem setTarget:self];
 	
-	clickItem = [menu addItemWithTitle:@"3 Finger Click" action:@selector(setClick:) keyEquivalent:@""];
+/*	clickItem = [menu addItemWithTitle:@"3 Finger Click" action:@selector(setClick:) keyEquivalent:@""];
 	[clickItem setTarget:self];
 	
 	tapItem = [menu addItemWithTitle:@"3 Finger Tap" action:@selector(setTap:) keyEquivalent:@""];
@@ -75,7 +75,7 @@
 	[self setChecks];
 	
 	// Add Separator
-	[menu addItem:[NSMenuItem separatorItem]];
+	[menu addItem:[NSMenuItem separatorItem]];*/
 	
 	// Add Quit Action
 	menuItem = [menu addItemWithTitle:@"Quit"
