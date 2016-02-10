@@ -57,8 +57,7 @@
 }
 
 - (NSMenu *) createMenu {
-	NSZone *menuZone = [NSMenu menuZone];
-	NSMenu *menu = [[NSMenu allocWithZone:menuZone] init];
+	NSMenu *menu = [NSMenu new];
 	NSMenuItem *menuItem;
 	
 	// Add About
@@ -90,7 +89,8 @@
 	NSMenu *menu = [self createMenu];
 	
     // Check if Darkmode menubar is supported and enable templating of the icon in that case.
-    NSImage *icon = [NSImage imageNamed:@"mouse.png"];
+    NSImage *icon = [NSImage imageNamed:@"mouse"];
+    [icon setSize:CGSizeMake(19, 19)];
     
     BOOL oldBusted = (floor(NSAppKitVersionNumber) <= NSAppKitVersionNumber10_9);
     if (!oldBusted)
@@ -100,11 +100,11 @@
     }
     
 	_statusItem = [[[NSStatusBar systemStatusBar]
-					statusItemWithLength:NSSquareStatusItemLength] retain];
-	[_statusItem setMenu:menu];
-	[_statusItem setHighlightMode:YES];
-	[_statusItem setToolTip:@"MiddleClick"];
-	[_statusItem setImage:icon];
+                        statusItemWithLength:NSSquareStatusItemLength] retain];
+    _statusItem.highlightMode = YES;
+    _statusItem.menu = menu;
+    _statusItem.button.toolTip = @"MiddleClick";
+    _statusItem.button.image = icon;
 	
 	[menu release];
 }

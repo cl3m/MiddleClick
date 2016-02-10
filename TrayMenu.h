@@ -8,7 +8,7 @@
 #import "Controller.h"
 
 
-@interface TrayMenu : NSObject {
+@interface TrayMenu : NSObject <NSFileManagerDelegate> {
 @private
 	NSStatusItem *_statusItem;
 	Controller *myController;
