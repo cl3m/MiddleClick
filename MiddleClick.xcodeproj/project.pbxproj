@@ -3,10 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 45;
+	objectVersion = 46;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		434F19DD1C6BCAB10009D8F7 /* mouse@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 434F19DC1C6BCAB10009D8F7 /* mouse@2x.png */; };
 		75032EF60FF697A4004CECD2 /* mouse.icns in Resources */ = {isa = PBXBuildFile; fileRef = 75032EF50FF697A4004CECD2 /* mouse.icns */; };
 		7519A949108A763300466740 /* WakeObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = 7519A948108A763300466740 /* WakeObserver.m */; };
 		7569F71E1007F64500D9CE54 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7569F71D1007F64500D9CE54 /* IOKit.framework */; };
@@ -27,6 +28,7 @@
 		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		32CA4F630368D1EE00C91783 /* MiddleClick_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MiddleClick_Prefix.pch; sourceTree = "<group>"; };
+		434F19DC1C6BCAB10009D8F7 /* mouse@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mouse@2x.png"; sourceTree = "<group>"; };
 		75032EF50FF697A4004CECD2 /* mouse.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = mouse.icns; sourceTree = "<group>"; };
 		7519A947108A763300466740 /* WakeObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WakeObserver.h; sourceTree = "<group>"; };
 		7519A948108A763300466740 /* WakeObserver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WakeObserver.m; sourceTree = "<group>"; };
@@ -124,6 +126,7 @@
 				758786B9103357F6004E024C /* relaunch */,
 				75032EF50FF697A4004CECD2 /* mouse.icns */,
 				75A6B6AA0FEE96540071FAC0 /* mouse.png */,
+				434F19DC1C6BCAB10009D8F7 /* mouse@2x.png */,
 				8D1107310486CEB800E47090 /* Info.plist */,
 			);
 			name = Resources;
@@ -167,8 +170,11 @@
 /* Begin PBXProject section */
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0720;
+			};
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "MiddleClick" */;
-			compatibilityVersion = "Xcode 3.1";
+			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 1;
 			knownRegions = (
@@ -193,6 +199,7 @@
 			files = (
 				75A6B6AB0FEE96540071FAC0 /* mouse.png in Resources */,
 				75032EF60FF697A4004CECD2 /* mouse.icns in Resources */,
+				434F19DD1C6BCAB10009D8F7 /* mouse@2x.png in Resources */,
 				758786BA103357F6004E024C /* relaunch in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -218,7 +225,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -232,6 +239,7 @@
 				GCC_PREFIX_HEADER = MiddleClick_Prefix.pch;
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
+				PRODUCT_BUNDLE_IDENTIFIER = com.rouge41.middleClick;
 				PRODUCT_NAME = MiddleClick;
 				SDKROOT = macosx;
 			};
@@ -241,7 +249,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COMBINE_HIDPI_IMAGES = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -252,6 +260,7 @@
 				GCC_PREFIX_HEADER = MiddleClick_Prefix.pch;
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
+				PRODUCT_BUNDLE_IDENTIFIER = com.rouge41.middleClick;
 				PRODUCT_NAME = MiddleClick;
 				SDKROOT = macosx;
 			};
@@ -260,7 +269,7 @@
 		C01FCF4F08A954540054247B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -273,7 +282,6 @@
 		C01FCF5008A954540054247B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
